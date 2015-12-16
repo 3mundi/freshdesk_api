@@ -3,6 +3,7 @@ require 'freshdesk_api'
 require 'pry'
 require 'vcr'
 require 'webmock'
+require 'rspec/its'
 setups = YAML.load(File.read(File.expand_path('../../config/secrets.yml', __FILE__)))
 FreshdeskAPI.setup do |config|
   config.username = setups['username']

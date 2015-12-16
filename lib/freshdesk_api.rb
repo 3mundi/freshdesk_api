@@ -1,6 +1,7 @@
 require "freshdesk_api/version"
 require 'active_support/all'
 require 'http'
+require 'virtus'
 
 module FreshdeskAPI
   include ActiveSupport::Configurable
@@ -15,5 +16,6 @@ module FreshdeskAPI
 end
 
 require 'freshdesk_api/requester'
-require 'freshdesk_api/tickets'
+require 'freshdesk_api/resource'
+require 'freshdesk_api/ticket'
 require 'freshdesk_api/response'

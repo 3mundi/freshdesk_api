@@ -29,14 +29,23 @@ module FreshdeskAPI
     end
 
     def url
-      URI.join(FreshdeskAPI.freshdesk_url, '/helpdesk/', "#{resource.for_url}").to_s
+      URI.join(FreshdeskAPI.freshdesk_url, '/helpdesk/', "#{resource_for_url}").to_s
     end
 
     def entity_url(id)
       "#{url}/#{id}"
     end
 
+    def resource_for_url
+      if resource.class == Class
+        resource.name.demodulize.downcase.pluralize
+      else
+        resource.class.name.demodulize.downcase.pluralize
+      end
+    end
+
     private
+
 
     def as_response
       Response.new(yield)

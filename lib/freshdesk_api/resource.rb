@@ -1,11 +1,6 @@
 module FreshdeskAPI
-  class Tickets
+  class Resource
     class << self
-      def resource
-        name.demodulize.downcase
-      end
-      alias_method :for_url, :resource
-
       def index
         Requester.new(self).index
       end
@@ -15,7 +10,8 @@ module FreshdeskAPI
       end
 
       def show(id)
-        Requester.new(self).show(id)
+        response = Requester.new(self).show(id)
+        self.new(response.body[:helpdesk_ticket])
       end
 
       def destroy(id)
@@ -26,10 +22,5 @@ module FreshdeskAPI
         Requester.new(self).update(id, params)
       end
     end
-
-    def resource
-      self.class.resource
-    end
-    alias_method :for_url, :resource
   end
 end
