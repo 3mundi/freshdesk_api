@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pathtravel.freshdesk.com/helpdesk/tickets.json
+    body:
+      encoding: UTF-8
+      string: '{"helpdesk_ticket":{"description":"Some details on the issue ...","subject":"Support
+        needed..","email":"apanach@path.travel","priority":1,"status":2,"source":2},"cc_emails":"alopez@path.travel"}'
+    headers:
+      Authorization:
+      - Basic aW5mb0BwYXRoLnRyYXZlbDpeRUtWeWVVOVQzdA==
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pathtravel.freshdesk.com
+      User-Agent:
+      - http.rb/0.9.8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 16 Dec 2015 16:11:31 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - _helpkit_session=BAh7CUkiD3Nlc3Npb25faWQGOgZFVEkiJTZlYTE4MzBhOWQzYzhlNTA1NzRhYmY2YWRkMzE1NTQzBjsAVEkiFXVzZXJfY3JlZGVudGlhbHMGOwBGSSIBgGQ1ODVhMTM3YzQyMzZhYzYyNmU4NTNhNGRjYzk1MzkyYzk5ZmM2YjNjOTZmYThkYjlhZDcyYWFmODQ5YjFmMjUwYTg4OTM3YmFjOGU2ZWQ3ZWNjNDU1YWJhYTIwN2JhMWNjODhjZTBkNDEyZjJiNDI2YjE4ZWU2Y2EzZDljODZjBjsAVEkiGHVzZXJfY3JlZGVudGlhbHNfaWQGOwBGbCsIPvTKGAIASSIKZmxhc2gGOwBUbzolQWN0aW9uRGlzcGF0Y2g6OkZsYXNoOjpGbGFzaEhhc2gJOgpAdXNlZG86CFNldAY6CkBoYXNoewA6DEBjbG9zZWRGOg1AZmxhc2hlc3sGOgtub3RpY2VJIiFUaGUgdGlja2V0IGhhcyBiZWVuIGNyZWF0ZWQuBjsAVDoJQG5vdzA%3D--a4dd97e8a9c0e1c3c7c93c71cdea41ea5981ac47;
+        path=/; HttpOnly
+      - helpdesk_node_session=7d8d73fb99aeb10b23f972cc7b57708f8e0f7150c34bb4645ad70cea027bfe3170387fdd49804a792754748dd1f101113b3977d378450229b7a959ad41f79ec2;
+        path=/
+      Status:
+      - 200 OK
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - 6e0c457f9c215f0ec5675835789c653a
+      X-Runtime:
+      - '0.446733'
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - Close
+    body:
+      encoding: UTF-8
+      string: '{"helpdesk_ticket":{"cc_email":{"cc_emails":["alopez@path.travel"],"fwd_emails":[],"reply_cc":["alopez@path.travel"],"tkt_cc":["alopez@path.travel"]},"created_at":"2015-12-16T11:11:31-05:00","deleted":false,"delta":true,"description":"Some
+        details on the issue ...","description_html":"\u003Cdiv\u003ESome details
+        on the issue \u2026\u003C/div\u003E","display_id":11,"due_by":"2015-12-21T11:11:31-05:00","email_config_id":null,"frDueBy":"2015-12-17T11:11:31-05:00","fr_escalated":false,"group_id":null,"id":9000697056,"isescalated":false,"notes":[{"note":{"body":"created_by:
+        9005888574\ntime: 2015-12-16 11:11:31 -0500","body_html":"\u003Cdiv\u003Ecreated_by:
+        9005888574\u003Cbr\u003Etime: 2015-12-16 11:11:31 -0500\u003C/div\u003E","created_at":"2015-12-16T11:11:31-05:00","deleted":false,"id":9000672523,"incoming":false,"private":true,"source":4,"updated_at":"2015-12-16T11:11:31-05:00","user_id":9005941712,"attachments":[],"support_email":null}}],"owner_id":null,"priority":1,"requester_id":9005941712,"responder_id":null,"source":2,"spam":false,"status":2,"subject":"Support
+        needed..","ticket_type":null,"to_email":null,"trained":false,"updated_at":"2015-12-16T11:11:31-05:00","urgent":false,"status_name":"Open","requester_status_name":"Being
+        Processed","priority_name":"Low","source_name":"Portal","requester_name":"Apanach","responder_name":"No
+        Agent","to_emails":null,"product_id":null,"attachments":[],"custom_field":{},"tags":[]}}'
+    http_version: 
+  recorded_at: Wed, 16 Dec 2015 16:11:31 GMT
+recorded_with: VCR 3.0.0

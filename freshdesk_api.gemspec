@@ -5,7 +5,7 @@ require 'freshdesk_api/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "freshdesk_api"
-  spec.version       = FreshdeskApi::VERSION
+  spec.version       = FreshdeskAPI::VERSION
   spec.authors       = ["Artur Pañach"]
   spec.email         = ["arturictus@gmail.com"]
 
@@ -29,4 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.4"
+  spec.add_development_dependency "vcr", "~> 3"
+  spec.add_dependency "http", "~> 0.9.8"
+  spec.add_dependency 'activesupport', '~> 4.2'
 end
