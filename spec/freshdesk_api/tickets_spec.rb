@@ -1,26 +1,24 @@
 require 'spec_helper'
 module FreshdeskAPI
   describe Tickets do
+    let(:ticket_number) { 15 }
     it { expect(described_class.resource).to eq 'tickets' }
     it { expect(described_class.for_url).to eq 'tickets' }
     describe '::index' do
-      let(:request) do
+      let(:index_request) do
         VCR.use_cassette('tickets_index') do
           described_class.index
         end
       end
       it 'status' do
-        expect(request.status).to eq 200
+        expect(index_request.status).to eq 200
       end
       it 'body' do
-        expect(request.body).to be_a Array
+        expect(index_request.body).to be_a Array
       end
     end
 
     describe '::create' do
-      # before do
-      #   FileUtils.rm File.join(VCR.configuration.cassette_library_dir, 'tickets_post.yml'), force: true
-      # end
       let(:params) do
         {
           helpdesk_ticket:{
@@ -28,36 +26,67 @@ module FreshdeskAPI
               subject:"Support needed..",
               email:"apanach@path.travel",
               priority: 1,
-              status: 2,
-              source: 2
-          },
-          cc_emails:"alopez@path.travel"
+              status: 2
+          }
         }
       end
-      let(:request) do
+      let(:create_request) do
         VCR.use_cassette('tickets_post') do
           described_class.create(params)
         end
       end
       it 'status' do
-        expect(request.status).to eq 200
+        expect(create_request.status).to eq 200
       end
       it 'body' do
-        expect(request.body).to be_a Hash
+        expect(create_request.body).to be_a Hash
       end
     end
 
     describe '::show' do
-      let(:request) do
+      let(:show_request) do
         VCR.use_cassette('tickets_show') do
-          described_class.show(7)
+          described_class.show(ticket_number)
         end
       end
       it 'status' do
-        expect(request.status).to eq 200
+        expect(show_request.status).to eq 200
       end
       it 'body' do
-        expect(request.body).to be_a Hash
+        expect(show_request.body).to be_a Hash
+      end
+    end
+    describe '::update' do
+      let(:params) do
+        {
+          helpdesk_ticket: {
+            status: 5
+          }
+        }
+      end
+      let(:update_request) do
+        VCR.use_cassette('tickets_update') do
+          described_class.update(ticket_number, params)
+        end
+      end
+      it 'status' do
+        expect(update_request.status).to eq 200
+      end
+      it 'body' do
+        expect(update_request.body).to be_a Hash
+      end
+    end
+    describe '::destroy' do
+      let(:update_request) do
+        VCR.use_cassette('tickets_destroy') do
+          described_class.destroy(ticket_number)
+        end
+      end
+      it 'status' do
+        expect(update_request.status).to eq 200
+      end
+      it 'body' do
+        expect(update_request.body.to_s).to match 'deleted'
       end
     end
     describe 'instance' do

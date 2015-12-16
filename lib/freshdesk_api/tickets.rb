@@ -17,6 +17,14 @@ module FreshdeskAPI
       def show(id)
         Requester.new(self).show(id)
       end
+
+      def destroy(id)
+        Requester.new(self).destroy(id)
+      end
+
+      def update(id, params = {})
+        Requester.new(self).update(id, params)
+      end
     end
 
     def resource

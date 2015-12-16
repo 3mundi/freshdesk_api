@@ -3,7 +3,7 @@ module FreshdeskAPI
     # https://pathtravel.freshdesk.com/helpdesk/tickets.json
     describe 'instance' do
       subject { described_class.new(Tickets.new) }
-      it { expect(subject.url).to eq 'https://pathtravel.freshdesk.com/helpdesk/tickets.json' }
+      xit { expect(subject.url).to eq 'https://pathtravel.freshdesk.com/helpdesk/tickets.json' }
     end
   end
 end
