@@ -62,6 +62,16 @@ ticket.priority #=> 1
 ticket.display_id #=> 14
 ```
 
+**Add note:**
+```ruby
+response = FreshdeskAPI::Ticket.add_note(
+  17,
+  body: 'Hi Mum!',
+  private: false
+)
+response.body #=> 'Hi Mum!'
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake false` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
