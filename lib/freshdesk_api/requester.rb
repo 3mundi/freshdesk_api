@@ -44,16 +44,15 @@ module FreshdeskAPI
       end
     end
 
-    private
-
-
     def as_response
       Response.new(yield)
     end
-
     def conn
       HTTP.basic_auth(user: FreshdeskAPI.username, pass: FreshdeskAPI.password)
         .accept(FreshdeskAPI.format)
     end
+
+
+
   end
 end

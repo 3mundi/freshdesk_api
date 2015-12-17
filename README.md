@@ -22,7 +22,45 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Tickets
+**Create:**
+```ruby
+response = FreshdeskAPI::Ticket.create(
+  description:"Some details on the issue ...",
+  subject:"Support needed..",
+  email:"apanach@path.travel",
+  priority: 1,
+  status: 2
+)
+response.priority #=> 1
+response.display_id #=> 14
+```
+**Show:**
+```ruby
+response = FreshdeskAPI::Ticket.show(14)
+response.priority #=> 1
+response.display_id #=> 14
+```
+**Update:**
+```ruby
+response = FreshdeskAPI::Ticket.show(14, priority: 2)
+response.priority_name #=> 'Medium'
+response.priority #=> 2
+response.display_id #=> 14
+```
+**Destroy:**
+```ruby
+FreshdeskAPI::Ticket.destroy(14)
+# => true
+```
+
+**Index:**
+```ruby
+response = FreshdeskAPI::Ticket.index
+ticket = response.first
+ticket.priority #=> 1
+ticket.display_id #=> 14
+```
 
 ## Development
 
@@ -33,4 +71,3 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/freshdesk_api.
-

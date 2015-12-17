@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://pathtravel.freshdesk.com/helpdesk/tickets/16
+    body:
+      encoding: UTF-8
+      string: '{"helpdesk_ticket":{"status":5}}'
+    headers:
+      Authorization:
+      - Basic aW5mb0BwYXRoLnRyYXZlbDpeRUtWeWVVOVQzdA==
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - pathtravel.freshdesk.com
+      User-Agent:
+      - http.rb/0.9.8
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 17 Dec 2015 10:17:01 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - _helpkit_session=BAh7CEkiD3Nlc3Npb25faWQGOgZFVEkiJTVkNjc4ZmM5ZjQ4MzM3MGU4ZjNjYzZkNzhlMWZiMTExBjsAVEkiFXVzZXJfY3JlZGVudGlhbHMGOwBGSSIBgGQ1ODVhMTM3YzQyMzZhYzYyNmU4NTNhNGRjYzk1MzkyYzk5ZmM2YjNjOTZmYThkYjlhZDcyYWFmODQ5YjFmMjUwYTg4OTM3YmFjOGU2ZWQ3ZWNjNDU1YWJhYTIwN2JhMWNjODhjZTBkNDEyZjJiNDI2YjE4ZWU2Y2EzZDljODZjBjsAVEkiGHVzZXJfY3JlZGVudGlhbHNfaWQGOwBGbCsIPvTKGAIA--96fa1aa185c824e82fd906339beb431b131307a1;
+        path=/; HttpOnly
+      - helpdesk_node_session=7d8d73fb99aeb10b23f972cc7b57708f8e0f7150c34bb4645ad70cea027bfe3170387fdd49804a792754748dd1f101113b3977d378450229b7a959ad41f79ec2;
+        path=/
+      Status:
+      - 200 OK
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - 6ef662ae9068a9ffefce08eef7f4772e
+      X-Runtime:
+      - '0.336817'
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Content-Length:
+      - '285'
+      Connection:
+      - Close
+    body:
+      encoding: UTF-8
+      string: '{"ticket":{"deleted":false,"display_id":16,"subject":"Support needed..","status_name":"Closed","requester_status_name":"This
+        ticket has been Closed","priority_name":"Low","source_name":"Portal","requester_name":"Apanach","responder_name":"No
+        Agent","to_emails":null,"product_id":null}}'
+    http_version: 
+  recorded_at: Thu, 17 Dec 2015 10:17:01 GMT
+recorded_with: VCR 3.0.0

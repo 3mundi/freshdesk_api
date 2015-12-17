@@ -10,37 +10,34 @@ module FreshdeskAPI
           described_class.index
         end
       end
-      it 'status' do
-        expect(index_request.status).to eq 200
-      end
-      it 'body' do
-        expect(index_request.body).to be_a Array
+      it { expect(index_request).to be_a Array }
+      describe 'First' do
+        subject{ index_request.first }
+        its(:display_id) { is_expected.to eq 14 }
+        its(:status) { is_expected.to eq 2 }
+        its(:subject) { is_expected.to eq "Support needed.." }
       end
     end
 
     describe '::create' do
       let(:params) do
         {
-          helpdesk_ticket:{
-              description:"Some details on the issue ...",
-              subject:"Support needed..",
-              email:"apanach@path.travel",
-              priority: 1,
-              status: 2
-          }
+          description:"Some details on the issue ...",
+          subject:"Support needed..",
+          email:"apanach@path.travel",
+          priority: 1,
+          status: 2
         }
       end
-      let(:create_request) do
-        VCR.use_cassette('tickets_post') do
+      subject(:create_request) do
+        VCR.use_cassette('tickets_post_from_ticket_resource') do
           described_class.create(params)
         end
       end
-      it 'status' do
-        expect(create_request.status).to eq 200
-      end
-      it 'body' do
-        expect(create_request.body).to be_a Hash
-      end
+      its(:status) { is_expected.to eq 2 }
+      its(:display_id) { is_expected.to eq 16 }
+      its(:id) { is_expected.to eq 9000712980 }
+      its(:description) { is_expected.to match 'Some details on the issue' }
     end
 
     describe '::show' do
@@ -72,22 +69,24 @@ module FreshdeskAPI
     describe '::update' do
       let(:params) do
         {
-          helpdesk_ticket: {
-            status: 5
-          }
+          status: 5
         }
       end
-      let(:update_request) do
-        VCR.use_cassette('tickets_update') do
-          described_class.update(ticket_number, params)
+      subject(:update_request) do
+        VCR.use_cassette('tickets_update_from_ticket_resource') do
+          described_class.update(16, params)
         end
       end
-      it 'status' do
-        expect(update_request.status).to eq 200
-      end
-      it 'body' do
-        expect(update_request.body).to be_a Hash
-      end
+      its(:status_name) { is_expected.to eq 'Closed' }
+      its(:status) { is_expected.to eq 5 }
+      its(:requester_status_name) { is_expected.to eq "This ticket has been Closed" }
+      its(:priority_name) { is_expected.to eq "Low" }
+      its(:priority) { is_expected.to eq 1 }
+      its(:source_name) { is_expected.to eq "Portal" }
+      its(:source) { is_expected.to eq 2 }
+      its(:requester_name) { is_expected.to eq "Apanach" }
+      its(:responder_name) { is_expected.to eq "No Agent" }
+      its(:display_id) { is_expected.to eq 16 }
     end
     describe '::destroy' do
       let(:update_request) do
@@ -95,12 +94,19 @@ module FreshdeskAPI
           described_class.destroy(ticket_number)
         end
       end
-      it 'status' do
-        expect(update_request.status).to eq 200
+      it { expect(update_request).to eq true }
+    end
+
+    describe '::add_note' do
+      subject(:add_note_req) do
+        VCR.use_cassette('tickets_add_note_from_tickets_resource') do
+          described_class.add_note(17,
+            body: 'Hi Mum',
+            private: false
+          )
+        end
       end
-      it 'body' do
-        expect(update_request.body.to_s).to match 'deleted'
-      end
+      its(:body) { is_expected.to eq 'Hi Mum' }
     end
     describe 'instance' do
       subject { described_class.new }

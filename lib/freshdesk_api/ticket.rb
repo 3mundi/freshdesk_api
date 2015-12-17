@@ -1,28 +1,6 @@
 module FreshdeskAPI
   class Ticket < Resource
     include Virtus.model
-    class Note
-      include Virtus.model
-      def initialize(args = {})
-        if args[:note]
-          super args[:note]
-        else
-          super
-        end
-      end
-      attribute :body, String
-      attribute :body_html, String
-      attribute :created_at, DateTime
-      attribute :deleted, Boolean
-      attribute :id, Integer
-      attribute :incoming, Boolean
-      attribute :private, Boolean
-      attribute :source, Integer
-      attribute :updated_at, DateTime
-      attribute :user_id, Integer
-      attribute :attachments, Array
-      attribute :support_email, String
-    end
     attribute :display_id, Integer
     attribute :email, String
     attribute :phone, Integer
@@ -58,6 +36,61 @@ module FreshdeskAPI
     attribute :id, Integer
     attribute :isescalated, Boolean
     attribute :notes, [Note]
+
+    # When updating
+    attribute :status_name, String
+    attribute :requester_status_name, String
+    attribute :priority_name, String
+    attribute :source_name, String
+    attribute :requester_name, String
+    attribute :responder_name, String
+
+    def self.add_note(id, params = {})
+      r = Requester.new(self)
+      url = "#{r.entity_url(id)}/conversations/note"
+      to_api = {}.tap { |h| h[:helpdesk_note] = params }
+      res = r.as_response { r.conn.post(url, json: to_api) }
+      Note.new(res.body)
+    end
+
+    def priority
+      return @priority if @priority
+      case priority_name
+      when 'Low' then 1
+      when 'Medium' then 2
+      when 'High' then 3
+      when 'Urgent' then 4
+      else
+        @priority
+      end
+    end
+
+    def status
+      return @status if @status
+      case status_name
+      when 'Open' then 2
+      when 'Pending' then 3
+      when 'Resolved' then 4
+      when 'Closed' then 5
+      else
+        @status
+      end
+    end
+
+    def source
+      return @source if @source
+      case source_name
+      when 'Email' then 1
+      when 'Portal' then 2
+      when 'Phone' then 3
+      when 'Forum' then 4
+      when 'Twitter' then 5
+      when 'Facebook' then 6
+      when 'Chat' then 7
+      else
+        @source
+      end
+    end
 
     def self.wrapper_key
       :helpdesk_ticket
