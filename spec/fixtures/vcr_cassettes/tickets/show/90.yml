@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://pathtravel.freshdesk.com/helpdesk/tickets/90
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic aW5mb0BwYXRoLnRyYXZlbDpeRUtWeWVVOVQzdA==
+      Accept:
+      - application/json
+      Connection:
+      - close
+      Host:
+      - pathtravel.freshdesk.com
+      User-Agent:
+      - http.rb/0.9.8
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Cache-Control:
+      - must-revalidate, no-cache, no-store, private, max-age=0
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 21 Dec 2015 09:50:50 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - _helpkit_session=BAh7CEkiD3Nlc3Npb25faWQGOgZFVEkiJTU3NjVlZThmZmYwYTJiOGRiZWM2OTliMDZhNTAwOGU0BjsAVEkiFXVzZXJfY3JlZGVudGlhbHMGOwBGSSIBgGQ1ODVhMTM3YzQyMzZhYzYyNmU4NTNhNGRjYzk1MzkyYzk5ZmM2YjNjOTZmYThkYjlhZDcyYWFmODQ5YjFmMjUwYTg4OTM3YmFjOGU2ZWQ3ZWNjNDU1YWJhYTIwN2JhMWNjODhjZTBkNDEyZjJiNDI2YjE4ZWU2Y2EzZDljODZjBjsAVEkiGHVzZXJfY3JlZGVudGlhbHNfaWQGOwBGbCsIPvTKGAIA--dcc641fc027f343822a0235901f4e302970aadc8;
+        path=/; HttpOnly
+      - helpdesk_node_session=7d8d73fb99aeb10b23f972cc7b57708f8e0f7150c34bb4645ad70cea027bfe3170387fdd49804a792754748dd1f101113b3977d378450229b7a959ad41f79ec2;
+        path=/
+      Status:
+      - 404 Not Found
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 664c9ac6b0f78c2a23361e7d7a5faf99
+      X-Runtime:
+      - '0.150812'
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Content-Length:
+      - '39'
+      Connection:
+      - Close
+    body:
+      encoding: UTF-8
+      string: '{"errors":{"error":"Record Not Found"}}'
+    http_version: 
+  recorded_at: Mon, 21 Dec 2015 09:50:51 GMT
+recorded_with: VCR 3.0.0

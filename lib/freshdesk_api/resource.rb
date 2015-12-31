@@ -14,8 +14,10 @@ module FreshdeskAPI
 
       def show(id)
         response = Requester.new(self).show(id)
+        return if response.status == 404
         new(response.body[wrapper_key])
       end
+      alias_method :find, :show
 
       def destroy(id)
         response = Requester.new(self).destroy(id)

@@ -65,6 +65,14 @@ module FreshdeskAPI
         its(:attachments) { is_expected.to eq [] }
         its(:support_email) { is_expected.to eq nil }
       end
+      context 'When ticket does not exists' do
+        subject(:show_request) do
+          VCR.use_cassette('tickets/show/90') do
+            described_class.show(90)
+          end
+        end
+        it { is_expected.to be_nil }
+      end
     end
     describe '::update' do
       let(:params) do
