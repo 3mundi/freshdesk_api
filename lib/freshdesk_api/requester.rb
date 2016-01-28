@@ -17,6 +17,7 @@ module FreshdeskAPI
         conn.get(entity_url(id))
       end
     end
+    alias_method :find, :show
 
     def update(id, params = {})
       as_response do
@@ -47,12 +48,10 @@ module FreshdeskAPI
     def as_response
       Response.new(yield)
     end
+
     def conn
       HTTP.basic_auth(user: FreshdeskAPI.username, pass: FreshdeskAPI.password)
         .accept(FreshdeskAPI.format)
     end
-
-
-
   end
 end

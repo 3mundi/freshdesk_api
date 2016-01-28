@@ -9,13 +9,13 @@ module FreshdeskAPI
       def create(params)
         to_api = {}.tap { |h| h[wrapper_key] = params }
         response = Requester.new(self).create(to_api)
-        new(response.body[wrapper_key])
+        new(response.body)
       end
 
       def show(id)
         response = Requester.new(self).show(id)
         return if response.status == 404
-        new(response.body[wrapper_key])
+        new(response.body)
       end
       alias_method :find, :show
 

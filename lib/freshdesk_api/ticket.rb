@@ -1,6 +1,13 @@
 module FreshdeskAPI
   class Ticket < Resource
     include Virtus.model
+    def initialize(args = {})
+      if args[:helpdesk_ticket]
+        super args[:helpdesk_ticket]
+      else
+        super
+      end
+    end
     attribute :display_id, Integer
     attribute :email, String
     attribute :phone, Integer
